@@ -8,7 +8,7 @@
 	  var shapes = []
 	  var timer;
 	  var timerTwo;
-	  var possibleShapes = ['triangle','oval','circle','splat','diamond','heart'];
+	  var possibleShapes = ['triangle','oval','circle','splat','diamond','heart','star'];
 	  function Shape(x, y, color) {
 		this.x = x;
 		this.y = y;
@@ -34,11 +34,14 @@
 	  function newShape() {
 		var x = Math.random() * canvas.width;
 		var y = Math.random() * canvas.height;
-		var colors = ["pink", "green", "blue", "orange", "purple", "yellow"];
+		var colors = ["pink", "green", "blue", "orange", "purple", "yellow", "red", "ivory"];
 		var color = colors[Math.floor(Math.random()*colors.length)];
 		shapes.push(new Shape(x, y, color));
 		
 	  }
+
+
+
 	  function drawCircle(circle) {
 		 context.beginPath();
 		 context.arc(circle.x, circle.y, circle.size, 0, degreesToRadians(360), true);
@@ -146,7 +149,7 @@ function drawDiamond(diamond){
         context.lineTo(diamond.x,diamond.y+200);
         context.lineTo(diamond.x-75,diamond.y+100);
                                  
-        //Define the style of the shape
+    
         context.lineWidth = 1;
         context.fillStyle = diamond.color;
        
@@ -184,13 +187,36 @@ function drawDiamond(diamond){
 		context.fill();
 		context.stroke();
 
-}
+	}
+
+	function drawStar(star){
+    		
+    		context.beginPath();
+    		context.moveTo(star.x, star.y);
+    		context.lineTo(star.x+33.4, star.y+67.5);
+    		context.lineTo(star.x+107.9, star.y+78.3);
+    		context.lineTo(star.x+54, star.y+130.9);
+    		context.lineTo(star.x+66.7, star.y+205.1);
+    		context.lineTo(star.x, star.y+170.1);
+    		context.lineTo(star.x-66.6, star.y+205.1);
+    		context.lineTo(star.x-53.9, star.y+130.9);
+    		context.lineTo(star.x+107.8, star.y+78.3);
+    		context.lineTo(star.x+33.3, star.y+67.5);
+    		context.lineTo(star.x, star.y);
+    		context.closePath();
+    		
+    		context.fillStyle = star.color;
+    		context.fill();
+    		context.stroke();
+    
+	}
+
 
 	  function drawText() {
 		context.fillStyle = 'white';
 		context.font = 'bold 4em century gothic';
 		context.textAlign = 'right';
-		context.fillText('Look at This Cool Stuff', canvas.width-40, canvas.height-40);
+		context.fillText = ('Look at This Cool Stuff', canvas.width-40, canvas.height-40);
 	}
 
 
@@ -217,6 +243,10 @@ function drawDiamond(diamond){
 			else if (shapes[i].shape == 'heart') {
 				drawHeart(shapes[i]);
 			}
+			else if (shapes[i].shape == 'star') {
+				drawStar(shapes[i]);
+			}
+			
 		
 			
 			if (shapes[i].x + shapes[i].dx > canvas.width || shapes[i].x + shapes[i].dx < 0)

@@ -8,7 +8,7 @@
 	  var shapes = []
 	  var timer;
 	  var timerTwo;
-	  var possibleShapes = ['triangle','oval','circle','splat','diamond','heart'];
+	  var possibleShapes = ['triangle','oval','circle','splat','diamond','heart','star'];
 	  function Shape(x, y, color) {
 		this.x = x;
 		this.y = y;
@@ -34,7 +34,7 @@
 	  function newShape() {
 		var x = Math.random() * canvas.width;
 		var y = Math.random() * canvas.height;
-		var colors = ["pink", "green", "blue", "orange", "purple", "yellow"];
+		var colors = ["fuchsia", "green", "aquamarine", "orange", "darkorchid", "yellow","gold",, "aqua", "blue"];
 		var color = colors[Math.floor(Math.random()*colors.length)];
 		shapes.push(new Shape(x, y, color));
 		
@@ -194,8 +194,31 @@ function drawDiamond(diamond){
 
 }
 
+function drawStar(star){
+    		
+    		context.beginPath();
+    		context.moveTo(star.x, star.y);
+    		context.lineTo(star.x+33.4, star.y+67.5);
+    		context.lineTo(star.x+107.9, star.y+78.3);
+    		context.lineTo(star.x+54, star.y+130.9);
+    		context.lineTo(star.x+66.7, star.y+205.1);
+    		context.lineTo(star.x, star.y+170.1);
+    		context.lineTo(star.x-66.6, star.y+205.1);
+    		context.lineTo(star.x-53.9, star.y+130.9);
+    		context.lineTo(star.x+107.8, star.y+78.3);
+    		context.lineTo(star.x+33.3, star.y+67.5);
+    		context.lineTo(star.x, star.y);
+    		context.closePath();
+    		
+    		context.fillStyle = star.color;
+    		context.fill();
+    		context.stroke();
+    
+	}
+
+
 	  function drawText() {
-		context.fillStyle = 'white';
+		context.fillStyle = 'yellowgreen';
 		context.font = 'bold 4em century gothic';
 		context.textAlign = 'right';
 		context.fillText('Look at This Cool Stuff', canvas.width-40, canvas.height-40);
@@ -225,6 +248,9 @@ function drawDiamond(diamond){
 			else if (shapes[i].shape == 'heart') {
 				drawHeart(shapes[i]);
 			}
+			else if (shapes[i].shape == 'star') {
+				drawStar(shapes[i]);
+			}
 		
 			
 			if (shapes[i].x + shapes[i].dx > canvas.width || shapes[i].x + shapes[i].dx < 0)
@@ -237,13 +263,12 @@ function drawDiamond(diamond){
 		drawText();		 
       }
 	  function fillBackgroundColor() {
-		 //var colors = ["white", "yellow", "blue", "red"];
-		 //var bgColor = colors[Math.floor(Math.random() * colors.length)];
-		 context.fillStyle = 'black';
+		 
+		 context.fillStyle = 'darkgray';
 		 context.fillRect(0, 0, canvas.width, canvas.height);
 	}
 	function degreesToRadians(degrees) {
-		//converts from degrees to radians and returns
+		
 		return (degrees * Math.PI)/180;
 	}
 	window.onload = init;
